@@ -1,84 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable=0>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="images/fovicon.svg">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/slick.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-
-<div class="body">
-    <header class="header">
-        <div class="container">
-            <div class="header__inner">
-                <a class="header__logo" href="index.html">
-                    <img src="images/logo-header.svg" alt="">
-                </a>
-                <button class="burger">
-                    <span class="burger-line"></span>
-                </button>
-                <div class="header__item-box"></div>
-                <div class="header__item">
-                    <div class="header__language">
-                        <a class="header__language-ru" href="#?">
-                            ru
-                        </a>
-                        <a class="header__language-kz" href="#?">
-                            kz
-                        </a>
-                        <a class="header__language-en" href="#?">
-                            en
-                        </a>
-                    </div>
-                    <nav class="header__nav">
-                        <ul class="header__list">
-                            <li class="header__list-item">
-                                <a class="header__list-link" href="about.html">
-                                    О фонде
-                                </a>
-                            </li>
-                            <li class="header__list-item">
-                                <a class="header__list-link" href="projects.html">
-                                    Наши проекты
-                                </a>
-                            </li>
-                            <li class="header__list-item">
-                                <a class="header__list-link" href="reports.html">
-                                    Отчёты
-                                </a>
-                            </li>
-                            <li class="header__list-item">
-                                <a class="header__list-link" href="contacts.html">
-                                    Контакты
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="header__contacts">
-                        <p class="header__contacts-phone">
-                            8 800 808-00-80
-                        </p>
-                        <a class="header__contacts-email" href="#?">
-                            Kustohelp@gmail.com
-                        </a>
-                        <a class="header__contacts-whatsaap" href="#?">
-                            Написать нам
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
+@include('components.header')
     <main class="main">
-
         <section class="intro" style="background-image: url(images/bg/intro-bg.jpg)">
             <div class="intro-box">
                 <div class="container">
@@ -236,66 +158,23 @@
                     Новости фонда
                 </h3>
                 <div class="news__inner">
-                    <div class="news__item">
-                        <img class="news__item-img" src="images/img/news-img-1.jpg" alt="">
-                        <h6 class="news__item-title">
-                            Период карантина
-                        </h6>
-                        <p class="news__item-date">
-                            18 марта 2021
-                        </p>
-                        <p class="news__item-text page__text">
-                            Лучшие считаются заготовки производителей Италии Silca мировой лидер по производству заготовокили Errebi и Испании JMA лидер европейского рынка.
-                        </p>
-                        <a class="news__item-link" href="news.html">
-                            Подробнее
-                        </a>
-                    </div>
-                    <div class="news__item">
-                        <img class="news__item-img" src="images/img/news-img-2.jpg" alt="">
-                        <h6 class="news__item-title">
-                            Период карантина
-                        </h6>
-                        <p class="news__item-date">
-                            18 марта 2021
-                        </p>
-                        <p class="news__item-text page__text">
-                            Лучшие считаются заготовки производителей Италии Silca мировой лидер по производству заготовокили Errebi и Испании JMA лидер европейского рынка.
-                        </p>
-                        <a class="news__item-link" href="news.html">
-                            Подробнее
-                        </a>
-                    </div>
-                    <div class="news__item">
-                        <img class="news__item-img" src="images/img/news-img-3.jpg" alt="">
-                        <h6 class="news__item-title">
-                            Период карантина
-                        </h6>
-                        <p class="news__item-date">
-                            18 марта 2021
-                        </p>
-                        <p class="news__item-text page__text">
-                            Лучшие считаются заготовки производителей Италии Silca мировой лидер по производству заготовокили Errebi и Испании JMA лидер европейского рынка.
-                        </p>
-                        <a class="news__item-link" href="news.html">
-                            Подробнее
-                        </a>
-                    </div>
-                    <div class="news__item">
-                        <img class="news__item-img" src="images/img/news-img-4.jpg" alt="">
-                        <h6 class="news__item-title">
-                            Период карантина
-                        </h6>
-                        <p class="news__item-date">
-                            18 марта 2021
-                        </p>
-                        <p class="news__item-text page__text">
-                            Лучшие считаются заготовки производителей Италии Silca мировой лидер по производству заготовокили Errebi и Испании JMA лидер европейского рынка.
-                        </p>
-                        <a class="news__item-link" href="news.html">
-                            Подробнее
-                        </a>
-                    </div>
+                    @foreach ($news as $item)
+                        <div class="news__item">
+                            <img class="news__item-img" src={{$item->img_path}} alt="">
+                            <h6 class="news__item-title">
+                               {{$item->name}}
+                            </h6>
+                            <p class="news__item-date">
+                                <time>{{$item->created_at->format('d M Y')}}</time>
+                            </p>
+                            <p class="news__item-text page__text">
+                                {{$item->preview_text}}
+                            </p>
+                            <a class="news__item-link" href="/news/{{$item->id}}">
+                                Подробнее
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -306,120 +185,24 @@
                     НАШИ ПРОЕКТЫ
                 </h3>
                 <div class="projects__slider" id="projects">
-                    <div class="projects__item">
-                        <img class="projects__item-img" src="images/img/projects-1.jpg" alt="">
-                        <div class="projects__item-content">
-                            <h6 class="projects__item-title">
-                                Название
-                                благотворительности
-                            </h6>
-                            <p class="projects__item-text page__text">
-                                Необходимыми средствами для
-                                борьбы с инфекцией и обеспечения
-                                условий их работы
-                            </p>
-                            <div class="projects__item-button">
-                                <a class="projects__item-link page__btn" href="#?">
-                                    Пожертвовать
-                                </a>
+                    @foreach($projects as $item)
+                        <div class="projects__item">
+                            <img class="projects__item-img" src="{{$item->img_path}}" alt="">
+                            <div class="projects__item-content">
+                                <h6 class="projects__item-title">
+                                    {{$item->name}}
+                                </h6>
+                                <p class="projects__item-text page__text">
+                                    {{$item->preview_text}}
+                                </p>
+                                <div class="projects__item-button">
+                                    <a class="projects__item-link page__btn" href="#?">
+                                        Пожертвовать
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="projects__item">
-                        <img class="projects__item-img" src="images/img/projects-2.jpg" alt="">
-                        <div class="projects__item-content">
-                            <h6 class="projects__item-title">
-                                Название
-                                благотворительности
-                            </h6>
-                            <p class="projects__item-text page__text">
-                                Необходимыми средствами для
-                                борьбы с инфекцией и обеспечения
-                                условий их работы
-                            </p>
-                            <div class="projects__item-button">
-                                <a class="projects__item-link page__btn" href="#?">
-                                    Пожертвовать
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="projects__item">
-                        <img class="projects__item-img" src="images/img/projects-3.jpg" alt="">
-                        <div class="projects__item-content">
-                            <h6 class="projects__item-title">
-                                Название
-                                благотворительности
-                            </h6>
-                            <p class="projects__item-text page__text">
-                                Необходимыми средствами для
-                                борьбы с инфекцией и обеспечения
-                                условий их работы
-                            </p>
-                            <div class="projects__item-button">
-                                <a class="projects__item-link page__btn" href="#?">
-                                    Пожертвовать
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="projects__item">
-                        <img class="projects__item-img" src="images/img/projects-4.jpg" alt="">
-                        <div class="projects__item-content">
-                            <h6 class="projects__item-title">
-                                Название
-                                благотворительности
-                            </h6>
-                            <p class="projects__item-text page__text">
-                                Необходимыми средствами для
-                                борьбы с инфекцией и обеспечения
-                                условий их работы
-                            </p>
-                            <div class="projects__item-button">
-                                <a class="projects__item-link page__btn" href="#?">
-                                    Пожертвовать
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="projects__item">
-                        <img class="projects__item-img" src="images/img/projects-1.jpg" alt="">
-                        <div class="projects__item-content">
-                            <h6 class="projects__item-title">
-                                Название
-                                благотворительности
-                            </h6>
-                            <p class="projects__item-text page__text">
-                                Необходимыми средствами для
-                                борьбы с инфекцией и обеспечения
-                                условий их работы
-                            </p>
-                            <div class="projects__item-button">
-                                <a class="projects__item-link page__btn" href="#?">
-                                    Пожертвовать
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="projects__item">
-                        <img class="projects__item-img" src="images/img/projects-1.jpg" alt="">
-                        <div class="projects__item-content">
-                            <h6 class="projects__item-title">
-                                Название
-                                благотворительности
-                            </h6>
-                            <p class="projects__item-text page__text">
-                                Необходимыми средствами для
-                                борьбы с инфекцией и обеспечения
-                                условий их работы
-                            </p>
-                            <div class="projects__item-button">
-                                <a class="projects__item-link page__btn" href="#?">
-                                    Пожертвовать
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <ul class="slick-dots">
                     <button class="arrow arrow-next">
@@ -438,33 +221,16 @@
                     Годовые отчеты
                 </h3>
                 <div class="reports__inner">
-                    <div class="reports__item">
-                        <div class="reports__item-title">
-                            Годовой отчет ЧФ
-                            "KUSTO.HELP" за 2020 год.
+                    @foreach($reports as $report)
+                        <div class="reports__item">
+                            <div class="reports__item-title">
+                               {{$report->name}}
+                            </div>
+                            <a class="reports__item-download" href="{{$report->file}}" download="">
+                                Скачать
+                            </a>
                         </div>
-                        <a class="reports__item-download" href="images/bg/intro-bg.jpg" download="">
-                            Скачать
-                        </a>
-                    </div>
-                    <div class="reports__item">
-                        <div class="reports__item-title">
-                            Отчет №2 за период
-                            с 26 апреля по 31 Мая 2020
-                        </div>
-                        <a class="reports__item-download" href="images/bg/intro-bg.jpg" download="">
-                            Скачать
-                        </a>
-                    </div>
-                    <div class="reports__item">
-                        <div class="reports__item-title">
-                            Отчет № 1
-                            от 25.05.2020 - 29.05.2020
-                        </div>
-                        <a class="reports__item-download" href="images/bg/intro-bg.jpg" download="">
-                            Скачать
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -489,153 +255,5 @@
                 </div>
             </div>
         </section>
-
     </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__inner">
-                <div class="footer__social">
-                    <a class="footer__logo" href="#?">
-                        <img class="footer__logo-img" src="images/footer-logo.png" alt="">
-                    </a>
-                    <div class="footer__social-icons">
-                        <a class="footer__social-link footer__social-youtube" href="#?">
-                            <svg class="icon" width="22" height="15.9">
-                                <use xlink:href="images/icons/sprite.svg#youtube"></use>
-                            </svg>
-                        </a>
-                        <a class="footer__social-link footer__social-instagram" href="#?">
-                            <svg class="icon" width="19" height="19">
-                                <use xlink:href="images/icons/sprite.svg#instagram"></use>
-                            </svg>
-                        </a>
-                        <a class="footer__social-link footer__social-facebook" href="#?">
-                            <svg class="icon" width="11" height="21">
-                                <use xlink:href="images/icons/sprite.svg#facebook"></use>
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="footer__social-contact">
-                        <a class="footer__social-whatsaap" href="#?">
-                            Написать нам
-                        </a>
-                        <a class="footer__social-email" href="#?">
-                            Kustohelp@gmail.com
-                        </a>
-                    </div>
-                </div>
-                <div class="footer__about">
-                    <h5 class="footer__title">
-                        О нас
-                    </h5>
-                    <ul class="footer__list">
-                        <li class="footer__list-item">
-                            <a class="footer__list-link" href="#?">
-                                О Фонде
-                            </a>
-                        </li>
-                        <li class="footer__list-item">
-                            <a class="footer__list-link" href="#?">
-                                Команда фонда
-                            </a>
-                        </li>
-                        <li class="footer__list-item">
-                            <a class="footer__list-link" href="#?">
-                                Попечительский совет
-                            </a>
-                        </li>
-                        <li class="footer__list-item">
-                            <a class="footer__list-link" href="#?">
-                                Проекты
-                            </a>
-                        </li>
-                        <li class="footer__list-item">
-                            <a class="footer__list-link" href="#?">
-                                Новости Фонда
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__partners">
-                    <h5 class="footer__title">
-                        Партнерам
-                    </h5>
-                    <ul class="footer__list">
-                        <li class="footer__list-item">
-                            <a class="footer__list-link" href="#?">
-                                Свои новости
-                            </a>
-                        </li>
-                        <li class="footer__list-item">
-                            <a class="footer__list-link" href="#?">
-                                Пресса о нас
-                            </a>
-                        </li>
-                        <li class="footer__list-item">
-                            <a class="footer__list-link" href="#?">
-                                Отчеты
-                            </a>
-                        </li>
-                        <li class="footer__list-item">
-                            <a class="footer__list-link" href="#?">
-                                Годовые отчеты
-                            </a>
-                        </li>
-                        <li class="footer__list-item">
-                            <a class="footer__list-link" href="#?">
-                                Контакты
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer__contacts">
-                    <h5 class="footer__title" id="contacts">
-                        Контакты
-                    </h5>
-                    <div class="footer__contacts-item footer__contacts-address">
-                        <h6 class="footer__contacts-title">
-                            Адрес
-                        </h6>
-                        <p class="footer__contacts-text">
-                            Алматы, ул. Набережная 1
-                        </p>
-                    </div>
-                    <div class="footer__contacts-item footer__contacts-phone">
-                        <h6 class="footer__contacts-title">
-                            Телефон
-                        </h6>
-                        <p class="footer__contacts-text">
-                            8 800 808-00-80
-                        </p>
-                    </div>
-                    <div class="footer__contacts-item footer__contacts-mode">
-                        <h6 class="footer__contacts-title">
-                            Режим работы
-
-                        </h6>
-                        <p class="footer__contacts-text">
-                            Пн - Пт / 8:30 - 19:00
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- svg -->
-
-    <svg>
-        <symbol id="whatsaap-slide">
-
-        </symbol>
-    </svg>
-
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/app.js"></script>
-</body>
-
-</html>
+@include('components.footer')

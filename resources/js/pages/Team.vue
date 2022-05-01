@@ -129,11 +129,11 @@
     methods: {
       initialize() {
 
-        axios.get('/api/roles').then(response => {
+        axios.get('/api/team').then(response => {
           this.tableData = response.data.data;
         });
 
-        axios.get('/api/permissions').then(response=>this.allPermissions=response.data.data);
+        axios.get('/api/team').then(response=>this.allPermissions=response.data.data);
       },
 
       editItem(item) {
@@ -146,7 +146,7 @@
         const index = this.tableData.indexOf(item);
         confirm('Are you sure you want to delete this item?') && this.tableData.splice(index, 1);
 
-        axios.delete('/api/roles/'+item.id).then(response=>console.log(response.data))
+        axios.delete('/api/team/'+item.id).then(response=>console.log(response.data))
 
       },
 
@@ -159,15 +159,15 @@
       },
 
       save() {
-        
+
         if (this.editedIndex > -1) {
           Object.assign(this.tableData[this.editedIndex], this.editedItem);
 
-          axios.put('/api/roles/'+this.editedItem.id,this.editedItem).then(response=>console.log(response.data));
+          axios.put('/api/team/'+this.editedItem.id,this.editedItem).then(response=>console.log(response.data));
         } else {
           this.tableData.push(this.editedItem);
 
-          axios.post('/api/roles', this.editedItem).then(response=>console.log(response.data));
+          axios.post('/api/team', this.editedItem).then(response=>console.log(response.data));
         }
         this.close();
       },

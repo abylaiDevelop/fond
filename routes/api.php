@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\ApiProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\ApiNewsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get("/users",[UserController::class,"index"]);
+Route::post("/users",[UserController::class,"store"]);
+Route::put("/users/{user}",[UserController::class,"update"]);
+Route::delete("/users/{user}",[UserController::class,"destroy"]);
+Route::apiResource("news",ApiNewsController::class);
+Route::apiResource("projects",ApiProjectController::class);
+

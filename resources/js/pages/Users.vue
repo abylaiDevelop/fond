@@ -32,31 +32,6 @@
                                 <v-flex xs12 >
                                     <v-text-field v-model="editedItem.confirm_password" label="Confirm Password"></v-text-field>
                                 </v-flex>
-
-                                <v-flex xs12>
-                                    <h3>Roles</h3>
-                                    <v-select
-                                            v-model="editedItem.role"
-                                            :items="allRoles"
-                                            label="Roles"
-                                            item-text="name"
-                                            return-object
-                                            chips
-                                    ></v-select>
-                                </v-flex>
-
-                                <v-flex xs12>
-                                    <v-select
-                                            v-model="editedItem.permissions"
-                                            :items="allPermissions"
-                                            label="Permissions"
-                                            item-text="name"
-                                            return-object
-                                            multiple
-                                            chips
-                                    ></v-select>
-                                </v-flex>
-
                             </v-layout>
                         </v-container>
                     </v-card-text>
@@ -77,8 +52,6 @@
             <template slot="items" slot-scope="props">
                 <td>{{ props.item.name }}</td>
                 <td class="text-xs-right">{{ props.item.email }}</td>
-                <td class="text-xs-right" v-if="props.item.role">{{ props.item.role.name }}</td>
-                <td class="text-xs-right" v-else>n/a</td>
                 <td class="text-xs-right">{{ props.item.created_at }}</td>
                 <td class="justify-center layout px-0">
                     <v-icon
@@ -110,26 +83,19 @@
       headers: [
         {text: 'Username', value: 'name'},
         {text: 'Email', value: 'email'},
-        {text: 'Role', value: 'role'},
         {text: 'Created', value: 'created_at'},
         {text: 'Actions', value: 'name', sortable: false},
       ],
       tableData: [],
       editedIndex: -1,
-      allRoles:[],
-      allPermissions:[],
       editedItem: {
         name: '',
         email: '',
-        role:{},
-        permissions:[],
         created_at: '',
       },
       defaultItem: {
         name: '',
         email: '',
-        role:{},
-        permissions:[],
         created_at: '',
       },
 
@@ -157,9 +123,6 @@
         axios.get('/api/users').then(response => {
           this.tableData = response.data.data;
         });
-
-        axios.get('/api/roles').then(response=>this.allRoles=response.data.data);
-        axios.get('/api/permissions').then(response=>this.allPermissions=response.data.data);
       },
 
       editItem(item) {
@@ -192,7 +155,7 @@
         } else {
           this.tableData.push(this.editedItem);
 
-          axios.post('/api/users/',this.editedItem).then(response=>console.log(response.data));
+          axios.post('/api/users',this.editedItem).then(response=>console.log(response.data));
         }
         this.close();
       },
