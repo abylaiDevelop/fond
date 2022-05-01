@@ -160,6 +160,7 @@ export default {
                 formdata.append("preview_text", this.editedItem.preview_text);
                 console.log(formdata.values());
                 axios.post('/api/projects/'+this.editedItem.id+"?_method=PUT",formdata).then(response=>console.log(response.data));
+                this.initialize();
             } else {
                 let formdata = new FormData();
                 formdata.append("img_path", this.editedItem.img_path);

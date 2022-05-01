@@ -2184,6 +2184,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/api/news/' + this.editedItem.id + "?_method=PUT", formdata).then(function (response) {
           return console.log(response.data);
         });
+        this.initialize();
       } else {
         var _formdata = new FormData();
 
@@ -2385,6 +2386,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/api/projects/' + this.editedItem.id + "?_method=PUT", formdata).then(function (response) {
           return console.log(response.data);
         });
+        this.initialize();
       } else {
         var _formdata = new FormData();
 
