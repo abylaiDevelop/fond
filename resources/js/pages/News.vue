@@ -158,8 +158,12 @@ export default {
 
             if (this.editedIndex > -1) {
                 Object.assign(this.tableData[this.editedIndex], this.editedItem);
-
-                axios.put('/api/news/'+this.editedItem.id,this.editedItem).then(response=>console.log(response.data));
+                let formdata = new FormData();
+                formdata.append("img_path", this.editedItem.img_path);
+                formdata.append("name", this.editedItem.name);
+                formdata.append("preview_text", this.editedItem.preview_text);
+                console.log(formdata.values());
+                axios.post('/api/news/'+this.editedItem.id+"?_method=PUT",formdata).then(response=>console.log(response.data));
             } else {
                 let formdata = new FormData();
                 formdata.append("img_path", this.editedItem.img_path);

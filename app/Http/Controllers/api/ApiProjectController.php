@@ -83,8 +83,20 @@ class ApiProjectController extends Controller
     public function update(Request $request, $id)
     {
         $project = Project::find($id);
-        $project->update($request->all());
-        return response(['message' => 'updated']);
+        $imageName = "";
+        if (!empty($request->img_path)) {
+            $request->validate([
+                'img_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $imageName = time().'.'.$request->file("img_path")->extension();
+            $request->file("img_path")->move(public_path('images'), $imageName);
+        }
+        $project->update([
+            "name" => $request->name,
+            "preview_text" => $request->preview_text,
+            "img_path" => $imageName != "" ? 'images/'.$imageName : ""
+        ]);
+        return response(['message'=>'updated successfully', "news" => $project]);
     }
 
     /**

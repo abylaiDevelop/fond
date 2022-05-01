@@ -74,10 +74,22 @@ class ApiNewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
         $news = News::find($id);
-        $news->update($request->all());
+        $imageName = "";
+        if (!empty($request->img_path)) {
+            $request->validate([
+                'img_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $imageName = time().'.'.$request->file("img_path")->extension();
+            $request->file("img_path")->move(public_path('images'), $imageName);
+        }
+        $news->update([
+            "name" => $request->name,
+            "preview_text" => $request->preview_text,
+            "img_path" => $imageName != "" ? 'images/'.$imageName : ""
+        ]);
         return response(['message'=>'updated successfully', "news" => $news]);
     }
 

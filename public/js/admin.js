@@ -2176,17 +2176,26 @@ __webpack_require__.r(__webpack_exports__);
     save: function save() {
       if (this.editedIndex > -1) {
         Object.assign(this.tableData[this.editedIndex], this.editedItem);
-        axios.put('/api/news/' + this.editedItem.id, this.editedItem).then(function (response) {
-          return console.log(response.data);
-        });
-      } else {
         var formdata = new FormData();
         formdata.append("img_path", this.editedItem.img_path);
         formdata.append("name", this.editedItem.name);
         formdata.append("preview_text", this.editedItem.preview_text);
-        console.log(formdata);
+        console.log(formdata.values());
+        axios.post('/api/news/' + this.editedItem.id + "?_method=PUT", formdata).then(function (response) {
+          return console.log(response.data);
+        });
+      } else {
+        var _formdata = new FormData();
+
+        _formdata.append("img_path", this.editedItem.img_path);
+
+        _formdata.append("name", this.editedItem.name);
+
+        _formdata.append("preview_text", this.editedItem.preview_text);
+
+        console.log(_formdata);
         this.tableData.push(this.editedItem);
-        axios.post('/api/news', formdata).then(function (response) {
+        axios.post('/api/news', _formdata).then(function (response) {
           return console.log(response.data);
         });
         console.log(this.editedItem);
@@ -2368,16 +2377,25 @@ __webpack_require__.r(__webpack_exports__);
     save: function save() {
       if (this.editedIndex > -1) {
         Object.assign(this.tableData[this.editedIndex], this.editedItem);
-        axios.put('/api/projects/' + this.editedItem.id, this.editedItem).then(function (response) {
-          return console.log(response.data);
-        });
-      } else {
         var formdata = new FormData();
         formdata.append("img_path", this.editedItem.img_path);
         formdata.append("name", this.editedItem.name);
         formdata.append("preview_text", this.editedItem.preview_text);
+        console.log(formdata.values());
+        axios.post('/api/projects/' + this.editedItem.id + "?_method=PUT", formdata).then(function (response) {
+          return console.log(response.data);
+        });
+      } else {
+        var _formdata = new FormData();
+
+        _formdata.append("img_path", this.editedItem.img_path);
+
+        _formdata.append("name", this.editedItem.name);
+
+        _formdata.append("preview_text", this.editedItem.preview_text);
+
         this.tableData.push(this.editedItem);
-        axios.post('/api/projects', formdata).then(function (response) {
+        axios.post('/api/projects', _formdata).then(function (response) {
           return console.log(response.data);
         });
       }
