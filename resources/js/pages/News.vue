@@ -130,7 +130,7 @@ export default {
         },
 
         handleFileUpload() {
-            this.editItem.img_path = this.$refs.file.files[0];
+            this.editedItem.img_path = this.$refs.file.files[0];
         },
         editItem(item) {
             this.editedIndex = this.tableData.indexOf(item);
@@ -161,9 +161,14 @@ export default {
 
                 axios.put('/api/news/'+this.editedItem.id,this.editedItem).then(response=>console.log(response.data));
             } else {
+                let formdata = new FormData();
+                formdata.append("img_path", this.editedItem.img_path);
+                formdata.append("name", this.editedItem.name);
+                formdata.append("preview_text", this.editedItem.preview_text);
+                console.log(formdata);
                 this.tableData.push(this.editedItem);
-
-                axios.post('/api/news', this.editedItem).then(response=>console.log(response.data));
+                axios.post('/api/news', formdata).then(response=>console.log(response.data));
+                console.log(this.editedItem);
             }
             this.close();
         },

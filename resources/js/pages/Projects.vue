@@ -25,7 +25,7 @@
                                     <v-text-field v-model="editedItem.preview_text" label="Preview"></v-text-field>
                                 </v-flex>
                                 <v-flex xs12 >
-                                    <v-text-field v-model="editedItem.img_path" label="Image"></v-text-field>
+                                    <input v-on:change="handleFileUpload()" type="file" id="file" ref="file">
                                 </v-flex>
                             </v-layout>
                         </v-container>
@@ -138,6 +138,9 @@ export default {
             axios.delete('/api/projects/'+item.id).then(response=>console.log(response.data))
 
         },
+        handleFileUpload() {
+            this.editedItem.img_path = this.$refs.file.files[0];
+        },
 
         close() {
             this.dialog = false;
@@ -154,9 +157,13 @@ export default {
 
                 axios.put('/api/projects/'+this.editedItem.id,this.editedItem).then(response=>console.log(response.data));
             } else {
+                let formdata = new FormData();
+                formdata.append("img_path", this.editedItem.img_path);
+                formdata.append("name", this.editedItem.name);
+                formdata.append("preview_text", this.editedItem.preview_text);
                 this.tableData.push(this.editedItem);
 
-                axios.post('/api/projects', this.editedItem).then(response=>console.log(response.data));
+                axios.post('/api/projects', formdata).then(response=>console.log(response.data));
             }
             this.close();
         },

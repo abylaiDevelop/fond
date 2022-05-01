@@ -2150,7 +2150,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     handleFileUpload: function handleFileUpload() {
-      this.editItem.img_path = this.$refs.file.files[0];
+      this.editedItem.img_path = this.$refs.file.files[0];
     },
     editItem: function editItem(item) {
       this.editedIndex = this.tableData.indexOf(item);
@@ -2180,10 +2180,16 @@ __webpack_require__.r(__webpack_exports__);
           return console.log(response.data);
         });
       } else {
+        var formdata = new FormData();
+        formdata.append("img_path", this.editedItem.img_path);
+        formdata.append("name", this.editedItem.name);
+        formdata.append("preview_text", this.editedItem.preview_text);
+        console.log(formdata);
         this.tableData.push(this.editedItem);
-        axios.post('/api/news', this.editedItem).then(function (response) {
+        axios.post('/api/news', formdata).then(function (response) {
           return console.log(response.data);
         });
+        console.log(this.editedItem);
       }
 
       this.close();
@@ -2347,6 +2353,9 @@ __webpack_require__.r(__webpack_exports__);
         return console.log(response.data);
       });
     },
+    handleFileUpload: function handleFileUpload() {
+      this.editedItem.img_path = this.$refs.file.files[0];
+    },
     close: function close() {
       var _this2 = this;
 
@@ -2363,8 +2372,12 @@ __webpack_require__.r(__webpack_exports__);
           return console.log(response.data);
         });
       } else {
+        var formdata = new FormData();
+        formdata.append("img_path", this.editedItem.img_path);
+        formdata.append("name", this.editedItem.name);
+        formdata.append("preview_text", this.editedItem.preview_text);
         this.tableData.push(this.editedItem);
-        axios.post('/api/projects', this.editedItem).then(function (response) {
+        axios.post('/api/projects', formdata).then(function (response) {
           return console.log(response.data);
         });
       }
@@ -39829,27 +39842,17 @@ var render = function () {
                                 1
                               ),
                               _vm._v(" "),
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: { label: "Image" },
-                                    model: {
-                                      value: _vm.editedItem.img_path,
-                                      callback: function ($$v) {
-                                        _vm.$set(
-                                          _vm.editedItem,
-                                          "img_path",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "editedItem.img_path",
+                              _c("v-flex", { attrs: { xs12: "" } }, [
+                                _c("input", {
+                                  ref: "file",
+                                  attrs: { type: "file", id: "file" },
+                                  on: {
+                                    change: function ($event) {
+                                      return _vm.handleFileUpload()
                                     },
-                                  }),
-                                ],
-                                1
-                              ),
+                                  },
+                                }),
+                              ]),
                             ],
                             1
                           ),

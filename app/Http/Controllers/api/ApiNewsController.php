@@ -45,7 +45,7 @@ class ApiNewsController extends Controller
             "preview_text" => $request->preview_text,
             "img_path" => '/images/'.$imageName
         ]);
-        return response(["message" => "created success", "news" => $news]);
+        return response(["message" => "created success", "news" => $request->file("img_path")]);
     }
 
 
