@@ -249,7 +249,7 @@ section {
   width: 24px;
   height: 24px;
   background-repeat: no-repeat;
-  background-image: url(/images/phone.svg?50ec5218ed25ac660c4a6069caa58de5);
+  background-image: url(/images/phone.svg?d2400ab05abd80c91ce93db9491cc51e);
 }
 .header__contacts a {
   display: block;
@@ -271,12 +271,12 @@ section {
   margin-bottom: 14px;
 }
 .header__contacts-email::before {
-  background-image: url(/images/message.svg?198fc0b652bb276f4e4979fa7b2fcd56);
+  background-image: url(/images/message.svg?03ca9b9f534ca34795671c45c0a65acf);
   width: 21.33px;
   height: 15px;
 }
 .header__contacts-whatsaap::before {
-  background-image: url(/images/whatsapp.svg?db50e5666c76fa93a1b934ea64800350);
+  background-image: url(/images/whatsapp.svg?158d5018b8e61d00f343d905b796f931);
   width: 20px;
   height: 20px;
 }
@@ -601,7 +601,7 @@ section {
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url(/images/date-icon.svg?d132c185d343e6a44ffff81961f1a4b4);
+  background-image: url(/images/date-icon.svg?85dfe24fc89686b8bda8f43fb0dc88c6);
   width: 13px;
   height: 13px;
   background-repeat: no-repeat;
@@ -621,7 +621,7 @@ section {
   position: absolute;
   top: 5px;
   right: -32px;
-  background-image: url(/images/arrow.svg?2f97dfa31abc35ca7c9e65952186edf6);
+  background-image: url(/images/arrow.svg?f31f641e99732e4eb2f1dcf184a575a8);
   width: 20.7px;
   height: 10px;
   background-repeat: no-repeat;
@@ -790,7 +790,7 @@ section {
   position: absolute;
   top: 0px;
   right: -25px;
-  background-image: url(/images/pdf-icon.svg?a5d16203d7dbfb36f58b3424391484f7);
+  background-image: url(/images/pdf-icon.svg?54effa768c936fe325ef0240b336927e);
   width: 14px;
   height: 15px;
   background-repeat: no-repeat;
@@ -921,7 +921,7 @@ section {
   background-repeat: no-repeat;
 }
 .footer__social-email::before {
-  background-image: url(/images/message.svg?198fc0b652bb276f4e4979fa7b2fcd56);
+  background-image: url(/images/message.svg?03ca9b9f534ca34795671c45c0a65acf);
   width: 21.33px;
   height: 15px;
   top: 0;
@@ -930,7 +930,7 @@ section {
   margin-bottom: 26px;
 }
 .footer__social-whatsaap::before {
-  background-image: url(/images/whatsapp.svg?db50e5666c76fa93a1b934ea64800350);
+  background-image: url(/images/whatsapp.svg?158d5018b8e61d00f343d905b796f931);
   width: 20px;
   height: 20px;
   top: -3px;
@@ -965,19 +965,19 @@ section {
   margin-top: 20px;
 }
 .footer__contacts-address::before {
-  background-image: url(/images/address.svg?49f9784ce233341c6f28b374746fa156);
+  background-image: url(/images/address.svg?42a38e8306b24db5cae06402e2c61e49);
   width: 13.71px;
   height: 18px;
   top: 5px;
 }
 .footer__contacts-phone::before {
-  background-image: url(/images/phone-blue.svg?edb736ede831184607556fb312bf76ec);
+  background-image: url(/images/phone-blue.svg?4849b70c326cdafb50a40f292f1fefb1);
   width: 18px;
   height: 18px;
   top: 8px;
 }
 .footer__contacts-mode::before {
-  background-image: url(/images/mode.svg?1d61baebeb098edfa447ac024a2770f3);
+  background-image: url(/images/mode.svg?a350a4a17a94843081fbced3f4d76618);
   width: 17px;
   height: 17px;
   top: 8px;

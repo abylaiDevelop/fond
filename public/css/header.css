@@ -136,7 +136,7 @@
   width: 24px;
   height: 24px;
   background-repeat: no-repeat;
-  background-image: url(/images/phone.svg?50ec5218ed25ac660c4a6069caa58de5);
+  background-image: url(/images/phone.svg?d2400ab05abd80c91ce93db9491cc51e);
 }
 .header__contacts a {
   display: block;
@@ -158,12 +158,12 @@
   margin-bottom: 14px;
 }
 .header__contacts-email::before {
-  background-image: url(/images/message.svg?198fc0b652bb276f4e4979fa7b2fcd56);
+  background-image: url(/images/message.svg?03ca9b9f534ca34795671c45c0a65acf);
   width: 21.33px;
   height: 15px;
 }
 .header__contacts-whatsaap::before {
-  background-image: url(/images/whatsapp.svg?db50e5666c76fa93a1b934ea64800350);
+  background-image: url(/images/whatsapp.svg?158d5018b8e61d00f343d905b796f931);
   width: 20px;
   height: 20px;
 }
