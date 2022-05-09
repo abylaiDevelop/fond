@@ -21,7 +21,7 @@ class ProjectRepository implements Repository
         $project::create([
             "name" => $request->name,
             "preview_text" => $request->preview_text,
-            "img_path" => $imageName != "" ? 'images/'.$imageName : ""
+            "img_path" => $imageName != "" ? 'images/upload/'.$imageName : ""
         ]);
         return $project;
     }
@@ -37,7 +37,7 @@ class ProjectRepository implements Repository
         $model->update([
             "name" => $request->name,
             "preview_text" => $request->preview_text,
-            "img_path" => $imageName != "" ? 'images/'.$imageName : ""
+            "img_path" => $imageName != "" ? 'images/upload/'.$imageName : ""
         ]);
         return $model;
     }

@@ -2,29 +2,31 @@
 
 namespace App\Repository;
 
+use App\Models\Common;
+use App\Models\MainSlider;
 use App\Models\News;
 use App\Services\ImageUploadService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewsRepository implements Repository
+class MainSliderRepository implements Repository
 {
 
     /**
      * @param FormRequest $request
-     * @return News
+     * @return MainSlider
      */
-    public function store(FormRequest $request): News
+    public function store(FormRequest $request): MainSlider
     {
-        $news = new News();
-        $service = new ImageUploadService();
-        $imageName = $service->upload($request);
-        $news::create([
+        $slider = new MainSlider();
+        $slider::create([
             "name" => $request->name,
             "preview_text" => $request->preview_text,
-            "img_path" => "images/upload/".$imageName
+            "youtube" => $request->youtube,
+            "instagram" => $request->instagram,
+            "facebook" => $request->facebook,
         ]);
-        return $news;
+        return $slider;
     }
 
     /**
@@ -34,12 +36,12 @@ class NewsRepository implements Repository
      */
     public function update(FormRequest $request, Model $model)
     {
-        $service = new ImageUploadService();
-        $imageName = $service->upload($request);
         $model->update([
             "name" => $request->name,
             "preview_text" => $request->preview_text,
-            "img_path" => $imageName != "" ? 'images/upload/'.$imageName : ""
+            "youtube" => $request->youtube,
+            "instagram" => $request->instagram,
+            "facebook" => $request->facebook,
         ]);
         return $model;
     }

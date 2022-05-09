@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\NewsController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [NewsController::class,"index"]);
-Route::get('/news/{news:id}', [NewsController::class,"show"]);
-Route::get('/admin', [NewsController::class,"admin"]);
-Route::get('/about', [NewsController::class,"about"]);
+Route::get('/', [MainController::class,"index"]);
+Route::get('/news/{news:id}', [MainController::class,"show"]);
+Route::get('/admin', [MainController::class,"admin"]);
+Route::get('/about', [MainController::class,"about"]);

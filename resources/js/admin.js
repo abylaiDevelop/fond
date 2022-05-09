@@ -24,6 +24,9 @@ import Projects from './pages/Projects'
 import Users from './pages/Users'
 import Team from './pages/Team'
 import News from './pages/News'
+import Report from './pages/Report'
+import MainSlider from './pages/MainSlider'
+import Common from './pages/Common'
 
 const routes = [
     {
@@ -39,8 +42,20 @@ const routes = [
         component: News
     },
     {
+        path: '/admin/main/slider',
+        component: MainSlider
+    },
+    {
+        path: '/admin/reports',
+        component: Report
+    },
+    {
         path: '/admin/projects',
         component: Projects
+    },
+    {
+        path: '/admin/common',
+        component: Common
     },
     {
         path: '/admin/team',

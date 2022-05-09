@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateReportsRequest;
 use App\Http\Resources\ReportResource;
 use App\Models\Reports;
 use App\Repository\ReportRepository;
+use Illuminate\Http\Response;
 use function response;
 
 class ReportsController extends Controller
@@ -15,17 +16,17 @@ class ReportsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
         $reports = Reports::all();
-        return response(['reports' => $reports]);
+        return ReportResource::collection($reports);
     }
 
     /**
      * Store a newly created resource in storage.
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(StoreReportsRequest $request,ReportRepository $repository)
     {
@@ -38,7 +39,7 @@ class ReportsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Reports  $reports
+     * @param Reports $reports
      * @return ReportResource
      */
     public function show(Reports $reports)
@@ -49,10 +50,10 @@ class ReportsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\UpdateReportsRequest $request
-     * @param \App\Models\Reports $reports
+     * @param UpdateReportsRequest $request
+     * @param Reports $reports
      * @param ReportRepository $repository
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(UpdateReportsRequest $request, Reports $reports, ReportRepository $repository)
     {
@@ -63,12 +64,15 @@ class ReportsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Reports  $reports
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
-    public function destroy(Reports $reports)
+    public function destroy(int $id)
     {
-        $reports->delete();
+        $existingResport = Reports::find($id);
+        if ($existingResport) {
+            $existingResport->delete();
+        }
         return response(['message' => 'deleted successfully']);
     }
 }

@@ -11,6 +11,26 @@
 
     <v-list-group no-action>
       <v-list-tile slot="activator">
+          <v-list-tile-action>
+              <v-icon>account_circle</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+              <v-list-tile-title>Common</v-list-tile-title>
+          </v-list-tile-content>
+      </v-list-tile>
+
+      <v-list-tile to="/admin/common">
+          <v-list-tile-action>
+              <v-icon>settings</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+              <v-list-tile-title>Common</v-list-tile-title>
+          </v-list-tile-content>
+      </v-list-tile>
+    </v-list-group>
+
+    <v-list-group no-action>
+      <v-list-tile slot="activator">
         <v-list-tile-action>
           <v-icon>account_circle</v-icon>
         </v-list-tile-action>
@@ -29,32 +49,87 @@
       </v-list-tile>
     </v-list-group>
 
-    <v-list-tile to="/admin/news">
-      <v-list-tile-action>
-        <v-icon>settings</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-content>
-        <v-list-tile-title>News</v-list-tile-title>
-      </v-list-tile-content>
-    </v-list-tile>
-
-    <v-list-tile to="/admin/projects">
-      <v-list-tile-action>
-        <v-icon>settings</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-content>
-        <v-list-tile-title>Project</v-list-tile-title>
-      </v-list-tile-content>
-    </v-list-tile>
-
-      <v-list-tile to="/admin/team">
+    <v-list-group no-action>
+      <v-list-tile slot="activator">
           <v-list-tile-action>
               <v-icon>settings</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-              <v-list-tile-title>Команда</v-list-tile-title>
+              <v-list-tile-title>Main page</v-list-tile-title>
           </v-list-tile-content>
       </v-list-tile>
+
+      <v-list-tile to="/admin/main/slider">
+          <v-list-tile-action>
+              <v-icon>settings</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+              <v-list-tile-title>Main slider</v-list-tile-title>
+          </v-list-tile-content>
+      </v-list-tile>
+
+      <v-list-tile to="/admin/about">
+          <v-list-tile-action>
+              <v-icon>settings</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+              <v-list-tile-title>About fond</v-list-tile-title>
+          </v-list-tile-content>
+      </v-list-tile>
+
+      <v-list-tile to="/admin/news">
+          <v-list-tile-action>
+              <v-icon>settings</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+              <v-list-tile-title>News</v-list-tile-title>
+          </v-list-tile-content>
+      </v-list-tile>
+
+      <v-list-tile to="/admin/projects">
+          <v-list-tile-action>
+              <v-icon>settings</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+              <v-list-tile-title>Project</v-list-tile-title>
+          </v-list-tile-content>
+      </v-list-tile>
+      <v-list-tile to="/admin/reports">
+          <v-list-tile-action>
+              <v-icon>settings</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+              <v-list-tile-title>Reports</v-list-tile-title>
+          </v-list-tile-content>
+      </v-list-tile>
+    </v-list-group>
+    <v-list-group no-action>
+          <v-list-tile slot="activator">
+              <v-list-tile-action>
+                  <v-icon>settings</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                  <v-list-tile-title>About page</v-list-tile-title>
+              </v-list-tile-content>
+          </v-list-tile>
+
+          <v-list-tile to="/admin/about">
+              <v-list-tile-action>
+                  <v-icon>settings</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                  <v-list-tile-title>About fond</v-list-tile-title>
+              </v-list-tile-content>
+          </v-list-tile>
+        <v-list-tile to="/admin/team">
+            <v-list-tile-action>
+                <v-icon>settings</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+                <v-list-tile-title>Команда</v-list-tile-title>
+            </v-list-tile-content>
+        </v-list-tile>
+      </v-list-group>
   </v-list>
 </template>
 

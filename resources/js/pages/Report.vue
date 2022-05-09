@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar dark flat color="grey-lighten">
-            <v-toolbar-title>Projects</v-toolbar-title>
+            <v-toolbar-title>Reports</v-toolbar-title>
             <v-divider
                 class="mx-2"
                 inset
@@ -20,9 +20,6 @@
                             <v-layout wrap>
                                 <v-flex xs12 >
                                     <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
-                                </v-flex>
-                                <v-flex xs12 >
-                                    <v-text-field v-model="editedItem.preview_text" label="Preview"></v-text-field>
                                 </v-flex>
                                 <v-flex xs12 >
                                     <input v-on:change="handleFileUpload()" type="file" id="file" ref="file">
@@ -46,8 +43,7 @@
         >
             <template slot="items" slot-scope="props">
                 <td>{{ props.item.name }}</td>
-                <td class="text-xs-right">{{ props.item.preview_text }}</td>
-                <td class="text-xs-right">{{ props.item.img_path }}</td>
+                <td class="text-xs-right">{{ props.item.file }}</td>
                 <td class="text-xs-right">{{ props.item.created_at }}</td>
                 <td class="justify-center layout px-0">
                     <v-icon
@@ -78,23 +74,20 @@ export default {
         dialog: false,
         headers: [
             {text: 'Name', value: 'name'},
-            {text: 'Text', value: 'preview_text'},
-            {text: 'Image', value: 'img_path', sortable: false},
-            {text: 'Date', value: 'img_path', sortable: false},
+            {text: 'File', value: 'file', sortable: false},
+            {text: 'Date', value: 'file', sortable: false},
         ],
         tableData: [],
         editedIndex: -1,
         allPermissions:[],
         editedItem: {
             name: '',
-            preview_text: '',
-            img_path: '',
+            file: '',
         },
         defaultItem: {
             name: '',
             created_at: '',
-            preview_text: '',
-            img_path: '',
+            file: '',
         },
 
     }),
@@ -118,11 +111,11 @@ export default {
     methods: {
         initialize() {
 
-            axios.get('/api/projects').then(response => {
+            axios.get('/api/report').then(response => {
                 this.tableData = response.data.data;
             });
 
-            axios.get('/api/projects').then(response=>this.allPermissions=response.data.data);
+            axios.get('/api/report').then(response=>this.allPermissions=response.data.data);
         },
 
         editItem(item) {
@@ -135,11 +128,11 @@ export default {
             const index = this.tableData.indexOf(item);
             confirm('Are you sure you want to delete this item?') && this.tableData.splice(index, 1);
 
-            axios.delete('/api/projects/'+item.id).then(response=>console.log(response.data))
+            axios.delete('/api/report/'+item.id).then(response=>console.log(response.data))
 
         },
         handleFileUpload() {
-            this.editedItem.img_path = this.$refs.file.files[0];
+            this.editedItem.file = this.$refs.file.files[0];
         },
 
         close() {
@@ -155,18 +148,16 @@ export default {
             if (this.editedIndex > -1) {
                 Object.assign(this.tableData[this.editedIndex], this.editedItem);
                 let formdata = new FormData();
-                formdata.append("img_path", this.editedItem.img_path);
+                formdata.append("file", this.editedItem.file);
                 formdata.append("name", this.editedItem.name);
-                formdata.append("preview_text", this.editedItem.preview_text);
                 console.log(formdata.values());
-                axios.post('/api/projects/'+this.editedItem.id+"?_method=PUT",formdata).then(response=>console.log(response.data));
+                axios.post('/api/report/'+this.editedItem.id+"?_method=PUT",formdata).then(response=>console.log(response.data));
                 this.initialize();
             } else {
                 let formdata = new FormData();
-                formdata.append("img_path", this.editedItem.img_path);
+                formdata.append("file", this.editedItem.file);
                 formdata.append("name", this.editedItem.name);
-                formdata.append("preview_text", this.editedItem.preview_text);
-                axios.post('/api/projects', formdata)
+                axios.post('/api/report', formdata)
                     .then(response=>console.log(response.data))
                     .then(response=>this.tableData.push(response.data))
             }

@@ -13,7 +13,7 @@ class StoreReportsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class StoreReportsRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'pdf|doc|docx|'
+            'file' => 'file|mimes:pdf,docx,doc'
         ];
     }
 }

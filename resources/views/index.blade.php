@@ -1,100 +1,42 @@
 
-@include('components.header')
+@include('components.header', $common)
     <main class="main">
         <section class="intro" style="background-image: url(images/bg/intro-bg.jpg)">
             <div class="intro-box">
                 <div class="container">
                     <div class="intro__slider">
-                        <div class="intro__content">
-                            <h1 class="intro__content-title">
-                                Благотворительный<span>ФОНД</span>
-                            </h1>
-                            <p class="intro__content-text page__text">
-                                Благотворительный проект #KustoHelp создан международной компанией Kusto Group и направлен на оказание помощи наиболее пострадавшим и уязвимым группам населения на период чрезвычайного положения, объявленной по причине пандемии коронавируса COVID-19 в Республике Казахстан
-                            </p>
-                            <div class="intro__content-bottom">
-                                <button class="intro__content-btn page__btn">
-                                    Подробнее
-                                </button>
-                                <div class="intro__content-social">
-                                    <a class="intro__content-link intro__content-youtube" href="#?">
-                                        <svg class="icon" width="22" height="15.9">
-                                            <use xlink:href="images/icons/sprite.svg#youtube"></use>
-                                        </svg>
-                                    </a>
-                                    <a class="intro__content-link intro__content-instagram" href="#?">
-                                        <svg class="icon" width="19" height="19">
-                                            <use xlink:href="images/icons/sprite.svg#instagram"></use>
-                                        </svg>
-                                    </a>
-                                    <a class="intro__content-link intro__content-facebook" href="#?">
-                                        <svg class="icon" width="11" height="21">
-                                            <use xlink:href="images/icons/sprite.svg#facebook"></use>
-                                        </svg>
-                                    </a>
+                        @foreach($slider as $item)
+                            <div class="intro__content">
+                                <h1 class="intro__content-title">
+                                    {!!html_entity_decode($item->name)!!}
+                                </h1>
+                                <p class="intro__content-text page__text">
+                                    {{$item->preview_text}}
+                                </p>
+                                <div class="intro__content-bottom">
+                                    <button class="intro__content-btn page__btn">
+                                        Подробнее
+                                    </button>
+                                    <div class="intro__content-social">
+                                        <a class="intro__content-link intro__content-youtube" href="{{$item->youtube}}">
+                                            <svg class="icon" width="22" height="15.9">
+                                                <use xlink:href="images/icons/sprite.svg#youtube"></use>
+                                            </svg>
+                                        </a>
+                                        <a class="intro__content-link intro__content-instagram" href="{{$item->instagram}}">
+                                            <svg class="icon" width="19" height="19">
+                                                <use xlink:href="images/icons/sprite.svg#instagram"></use>
+                                            </svg>
+                                        </a>
+                                        <a class="intro__content-link intro__content-facebook" href="{{$item->facebook}}">
+                                            <svg class="icon" width="11" height="21">
+                                                <use xlink:href="images/icons/sprite.svg#facebook"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="intro__content">
-                            <h1 class="intro__content-title">
-                                Благотворительный<span>ФОНД</span>
-                            </h1>
-                            <p class="intro__content-text page__text">
-                                Благотворительный проект #KustoHelp создан международной компанией Kusto Group и направлен на оказание помощи наиболее пострадавшим и уязвимым группам населения на период чрезвычайного положения, объявленной по причине пандемии коронавируса COVID-19 в Республике Казахстан
-                            </p>
-                            <div class="intro__content-bottom">
-                                <button class="intro__content-btn page__btn">
-                                    Подробнее
-                                </button>
-                                <div class="intro__content-social">
-                                    <a class="intro__content-link intro__content-youtube" href="#?">
-                                        <svg class="icon" width="22" height="15.9">
-                                            <use xlink:href="images/icons/sprite.svg#youtube"></use>
-                                        </svg>
-                                    </a>
-                                    <a class="intro__content-link intro__content-instagram" href="#?">
-                                        <svg class="icon" width="19" height="19">
-                                            <use xlink:href="images/icons/sprite.svg#instagram"></use>
-                                        </svg>
-                                    </a>
-                                    <a class="intro__content-link intro__content-facebook" href="#?">
-                                        <svg class="icon" width="11" height="21">
-                                            <use xlink:href="images/icons/sprite.svg#facebook"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="intro__content">
-                            <h1 class="intro__content-title">
-                                Благотворительный<span>ФОНД</span>
-                            </h1>
-                            <p class="intro__content-text page__text">
-                                Благотворительный проект #KustoHelp создан международной компанией Kusto Group и направлен на оказание помощи наиболее пострадавшим и уязвимым группам населения на период чрезвычайного положения, объявленной по причине пандемии коронавируса COVID-19 в Республике Казахстан
-                            </p>
-                            <div class="intro__content-bottom">
-                                <botton class="intro__content-btn page__btn">
-                                    Подробнее
-                                </botton>
-                                <div class="intro__content-social">
-                                    <a class="intro__content-link intro__content-youtube" href="#?">
-                                        <svg class="icon" width="22" height="15.9">
-                                            <use xlink:href="images/icons/sprite.svg#youtube"></use>
-                                        </svg>
-                                    </a>
-                                    <a class="intro__content-link intro__content-instagram" href="#?">
-                                        <svg class="icon" width="19" height="19">
-                                            <use xlink:href="images/icons/sprite.svg#instagram"></use>
-                                        </svg>
-                                    </a>
-                                    <a class="intro__content-link intro__content-facebook" href="#?">
-                                        <svg class="icon" width="11" height="21">
-                                            <use xlink:href="images/icons/sprite.svg#facebook"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

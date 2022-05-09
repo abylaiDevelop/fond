@@ -11,7 +11,6 @@ class Reports extends Model
 
     protected $fillable = [
         'name',
-        'preview_text',
-        'img_path',
+        'file',
     ];
 }

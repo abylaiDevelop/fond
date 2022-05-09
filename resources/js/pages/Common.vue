@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar dark flat color="grey-lighten">
-            <v-toolbar-title>Team</v-toolbar-title>
+            <v-toolbar-title>Logo and links common</v-toolbar-title>
             <v-divider
                 class="mx-2"
                 inset
@@ -19,25 +19,10 @@
                         <v-container grid-list-md>
                             <v-layout wrap>
                                 <v-flex xs12 >
-                                    <v-text-field v-model="editedItem.first_name" label="First name"></v-text-field>
+                                    <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
                                 </v-flex>
                                 <v-flex xs12 >
-                                    <v-text-field v-model="editedItem.second_name" label="Second name"></v-text-field>
-                                </v-flex>
-                                <v-flex xs12 >
-                                    <v-text-field v-model="editedItem.patron_name" label="Patron name"></v-text-field>
-                                </v-flex>
-                                <v-flex xs12 >
-                                    <v-text-field v-model="editedItem.position" label="Position"></v-text-field>
-                                </v-flex>
-                                <v-flex xs12 >
-                                    <v-text-field v-model="editedItem.whatsapp" label="Whatsapp link"></v-text-field>
-                                </v-flex>
-                                <v-flex xs12 >
-                                    <v-text-field v-model="editedItem.telegram" label="Telegram link"></v-text-field>
-                                </v-flex>
-                                <v-flex xs12 >
-                                    <v-text-field v-model="editedItem.phone" label="Phone number"></v-text-field>
+                                    <v-text-field v-model="editedItem.phone" label="Phone"></v-text-field>
                                 </v-flex>
                                 <v-flex xs12 >
                                     <input v-on:change="handleFileUpload()" type="file" id="file" ref="file">
@@ -60,14 +45,9 @@
             class="elevation-1"
         >
             <template slot="items" slot-scope="props">
-                <td>{{ props.item.first_name }}</td>
-                <td class="text-xs-right">{{ props.item.second_name }}</td>
-                <td class="text-xs-right">{{ props.item.patron_name }}</td>
-                <td class="text-xs-right">{{ props.item.position }}</td>
-                <td class="text-xs-right">{{ props.item.whatsapp }}</td>
-                <td class="text-xs-right">{{ props.item.telegram }}</td>
+                <td>{{ props.item.logo }}</td>
+                <td class="text-xs-right">{{ props.item.email }}</td>
                 <td class="text-xs-right">{{ props.item.phone }}</td>
-                <td class="text-xs-right">{{ props.item.img_path }}</td>
                 <td class="justify-center layout px-0">
                     <v-icon
                         small
@@ -96,37 +76,22 @@ export default {
     data: () => ({
         dialog: false,
         headers: [
-            {text: 'First name', value: 'first_name'},
-            {text: 'Second name', value: 'second_name'},
-            {text: 'Patron name', value: 'patron_name' },
-            {text: 'Position', value: 'position'},
-            {text: 'Whatsapp', value: 'whatsapp'},
-            {text: 'Telegram', value: 'telegram'},
-            {text: 'Phone', value: 'phone'},
-            {text: 'Image', value: 'img_path'},
+            {text: 'Logo', value: 'img_path'},
+            {text: 'email', value: 'email'},
+            {text: 'phone', value: 'phone', sortable: false},
         ],
         tableData: [],
         editedIndex: -1,
         allPermissions:[],
         editedItem: {
-            first_name: '',
-            second_name: '',
-            patron_name: '',
-            position: '',
-            whatsapp: '',
-            phone: '',
-            telegram: '',
             img_path: '',
+            email: '',
+            phone: '',
         },
         defaultItem: {
-            first_name: '',
-            second_name: '',
-            patron_name: '',
-            position: '',
-            whatsapp: '',
+            logo: '',
+            email: '',
             phone: '',
-            telegram: '',
-            img_path: '',
         },
 
     }),
@@ -150,11 +115,11 @@ export default {
     methods: {
         initialize() {
 
-            axios.get('/api/team').then(response => {
+            axios.get('/api/common').then(response => {
                 this.tableData = response.data.data;
             });
 
-            axios.get('/api/team').then(response=>this.allPermissions=response.data.data);
+            axios.get('/api/common').then(response=>this.allPermissions=response.data.data);
         },
 
         editItem(item) {
@@ -167,7 +132,7 @@ export default {
             const index = this.tableData.indexOf(item);
             confirm('Are you sure you want to delete this item?') && this.tableData.splice(index, 1);
 
-            axios.delete('/api/team/'+item.id).then(response=>console.log(response.data))
+            axios.delete('/api/common/'+item.id).then(response=>console.log(response.data))
 
         },
         handleFileUpload() {
@@ -187,28 +152,19 @@ export default {
             if (this.editedIndex > -1) {
                 Object.assign(this.tableData[this.editedIndex], this.editedItem);
                 let formdata = new FormData();
-                formdata.append("first_name", this.editedItem.first_name);
-                formdata.append("second_name", this.editedItem.second_name);
-                formdata.append("patron_name", this.editedItem.patron_name);
-                formdata.append("position", this.editedItem.position);
-                formdata.append("whatsapp", this.editedItem.whatsapp);
-                formdata.append("telegram", this.editedItem.telegram);
-                formdata.append("phone", this.editedItem.phone);
                 formdata.append("img_path", this.editedItem.img_path);
-                console.log(formdata.values());
-                axios.post('/api/team/'+this.editedItem.id+"?_method=PUT",formdata).then(response=>console.log(response.data));
+                formdata.append("email", this.editedItem.email);
+                formdata.append("phone", this.editedItem.phone);
+                axios.post('/api/common/'+this.editedItem.id+"?_method=PUT",formdata).then(response=>console.log(response.data));
                 this.initialize();
             } else {
                 let formdata = new FormData();
-                formdata.append("first_name", this.editedItem.first_name);
-                formdata.append("second_name", this.editedItem.second_name);
-                formdata.append("patron_name", this.editedItem.patron_name);
-                formdata.append("position", this.editedItem.position);
-                formdata.append("whatsapp", this.editedItem.whatsapp);
-                formdata.append("telegram", this.editedItem.telegram);
-                formdata.append("phone", this.editedItem.phone);
                 formdata.append("img_path", this.editedItem.img_path);
-                axios.post('/api/team', formdata).then(response=>console.log(response.data));
+                formdata.append("email", this.editedItem.email);
+                formdata.append("phone", this.editedItem.phone);
+                axios.post('/api/common', formdata)
+                    .then(response=>console.log(response.data))
+                    .then(response=>this.tableData.push(response.data))
             }
             this.close();
         },

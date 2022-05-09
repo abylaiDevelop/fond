@@ -55,108 +55,26 @@
                         Команда фонда
                     </h3>
                     <div class="team__slider">
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
+                        @foreach($teams as $team)
+                            <div class="team__item">
+                                <img class="team__img" src="{{$team->img_path}}" alt="">
+                                <p class="team__patronymic">
+                                    {{$team->first_name}}
+                                </p>
+                                <p class="team__name">
+                                    {{$team->second_name}}
+                                    {{$team->patron_name}}
+                                </p>
+                                <p class="team__post">
+                                    {{$team->position}}
+                                </p>
+                                <div class="team__social">
+                                    <img src="images/icons/telegram-slide.svg" alt="">
+                                    <img src="images/icons/whatsapp-slide.svg" alt="">
+                                    <img src="images/icons/phone-slide.svg" alt="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="team">
@@ -164,108 +82,26 @@
                         Команда фонда
                     </h3>
                     <div class="team__slider">
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
+                        @foreach($teams as $team)
+                            <div class="team__item">
+                                <img class="team__img" src="{{$team->img_path}}" alt="">
+                                <p class="team__patronymic">
+                                    {{$team->first_name}}
+                                </p>
+                                <p class="team__name">
+                                    {{$team->second_name}}
+                                    {{$team->patron_name}}
+                                </p>
+                                <p class="team__post">
+                                    {{$team->position}}
+                                </p>
+                                <div class="team__social">
+                                    <img src="images/icons/telegram-slide.svg" alt="">
+                                    <img src="images/icons/whatsapp-slide.svg" alt="">
+                                    <img src="images/icons/phone-slide.svg" alt="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="team__item">
-                            <img class="team__img" src="images/img/team-img.jpg" alt="">
-                            <p class="team__patronymic">
-                                Никитенко
-                            </p>
-                            <p class="team__name">
-                                Васелиса Ивановна
-                            </p>
-                            <p class="team__post">
-                                Директор
-                            </p>
-                            <div class="team__social">
-                                <img src="images/icons/telegram-slide.svg" alt="">
-                                <img src="images/icons/whatsapp-slide.svg" alt="">
-                                <img src="images/icons/phone-slide.svg" alt="">
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -2,29 +2,30 @@
 
 namespace App\Repository;
 
+use App\Models\Common;
 use App\Models\News;
 use App\Services\ImageUploadService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewsRepository implements Repository
+class CommonRepository implements Repository
 {
 
     /**
      * @param FormRequest $request
-     * @return News
+     * @return Common
      */
-    public function store(FormRequest $request): News
+    public function store(FormRequest $request): Common
     {
-        $news = new News();
+        $common = new Common();
         $service = new ImageUploadService();
         $imageName = $service->upload($request);
-        $news::create([
-            "name" => $request->name,
-            "preview_text" => $request->preview_text,
-            "img_path" => "images/upload/".$imageName
+        $common::create([
+            "logo" => "images/upload/".$imageName,
+            "email" => $request->email,
+            "phone" => $request->phone
         ]);
-        return $news;
+        return $common;
     }
 
     /**
@@ -37,9 +38,9 @@ class NewsRepository implements Repository
         $service = new ImageUploadService();
         $imageName = $service->upload($request);
         $model->update([
-            "name" => $request->name,
-            "preview_text" => $request->preview_text,
-            "img_path" => $imageName != "" ? 'images/upload/'.$imageName : ""
+            "logo" => "images/upload/".$imageName,
+            "email" => $request->email,
+            "phone" => $request->phone
         ]);
         return $model;
     }

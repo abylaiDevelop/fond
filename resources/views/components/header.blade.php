@@ -18,7 +18,7 @@
         <div class="container">
             <div class="header__inner">
                 <a class="header__logo" href="/">
-                    <img src="/images/logo-header.svg" alt="">
+                    <img src="{{$common->logo}}" alt="">
                 </a>
                 <button class="burger">
                     <span class="burger-line"></span>
@@ -62,12 +62,12 @@
                     </nav>
                     <div class="header__contacts">
                         <p class="header__contacts-phone">
-                            8 800 808-00-80
+                            {{$common->phone}}
                         </p>
                         <a class="header__contacts-email" href="#?">
-                            Kustohelp@gmail.com
+                            {{$common->email}}
                         </a>
-                        <a class="header__contacts-whatsaap" href="#?">
+                        <a class="header__contacts-whatsaap" href="mailto:{{$common->email}}">
                             Написать нам
                         </a>
                     </div>

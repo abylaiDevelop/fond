@@ -22,4 +22,8 @@ Route::put("/users/{user}",[UserController::class,"update"]);
 Route::delete("/users/{user}",[UserController::class,"destroy"]);
 Route::apiResource("news",ApiNewsController::class);
 Route::apiResource("projects",ApiProjectController::class);
+Route::apiResource("team",\App\Http\Controllers\Api\ApiTeamController::class);
+Route::apiResource("report",\App\Http\Controllers\Api\ReportsController::class);
+Route::apiResource("slider",\App\Http\Controllers\Api\MainSliderController::class);
+Route::apiResource("common",\App\Http\Controllers\Api\CommonController::class);
 

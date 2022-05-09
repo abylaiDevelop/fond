@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar dark flat color="grey-lighten">
-            <v-toolbar-title>Projects</v-toolbar-title>
+            <v-toolbar-title>Slider in main page</v-toolbar-title>
             <v-divider
                 class="mx-2"
                 inset
@@ -25,7 +25,13 @@
                                     <v-text-field v-model="editedItem.preview_text" label="Preview"></v-text-field>
                                 </v-flex>
                                 <v-flex xs12 >
-                                    <input v-on:change="handleFileUpload()" type="file" id="file" ref="file">
+                                    <v-text-field v-model="editedItem.youtube" label="Youtube"></v-text-field>
+                                </v-flex>
+                                <v-flex xs12 >
+                                    <v-text-field v-model="editedItem.instagram" label="Instagram"></v-text-field>
+                                </v-flex>
+                                <v-flex xs12 >
+                                    <v-text-field v-model="editedItem.facebook" label="Facebook"></v-text-field>
                                 </v-flex>
                             </v-layout>
                         </v-container>
@@ -47,8 +53,9 @@
             <template slot="items" slot-scope="props">
                 <td>{{ props.item.name }}</td>
                 <td class="text-xs-right">{{ props.item.preview_text }}</td>
-                <td class="text-xs-right">{{ props.item.img_path }}</td>
-                <td class="text-xs-right">{{ props.item.created_at }}</td>
+                <td class="text-xs-right">{{ props.item.youtube }}</td>
+                <td class="text-xs-right">{{ props.item.instagram }}</td>
+                <td class="text-xs-right">{{ props.item.facebook }}</td>
                 <td class="justify-center layout px-0">
                     <v-icon
                         small
@@ -79,8 +86,9 @@ export default {
         headers: [
             {text: 'Name', value: 'name'},
             {text: 'Text', value: 'preview_text'},
-            {text: 'Image', value: 'img_path', sortable: false},
-            {text: 'Date', value: 'img_path', sortable: false},
+            {text: 'Youtube', value: 'youtube', sortable: false},
+            {text: 'Instagram', value: 'instagram', sortable: false},
+            {text: 'FaceBook', value: 'facebook', sortable: false},
         ],
         tableData: [],
         editedIndex: -1,
@@ -88,13 +96,16 @@ export default {
         editedItem: {
             name: '',
             preview_text: '',
-            img_path: '',
+            youtube: '',
+            instagram: '',
+            facebook: '',
         },
         defaultItem: {
             name: '',
-            created_at: '',
             preview_text: '',
-            img_path: '',
+            youtube: '',
+            instagram: '',
+            facebook: '',
         },
 
     }),
@@ -118,11 +129,11 @@ export default {
     methods: {
         initialize() {
 
-            axios.get('/api/projects').then(response => {
+            axios.get('/api/slider').then(response => {
                 this.tableData = response.data.data;
             });
 
-            axios.get('/api/projects').then(response=>this.allPermissions=response.data.data);
+            axios.get('/api/slider').then(response=>this.allPermissions=response.data.data);
         },
 
         editItem(item) {
@@ -135,7 +146,7 @@ export default {
             const index = this.tableData.indexOf(item);
             confirm('Are you sure you want to delete this item?') && this.tableData.splice(index, 1);
 
-            axios.delete('/api/projects/'+item.id).then(response=>console.log(response.data))
+            axios.delete('/api/slider/'+item.id).then(response=>console.log(response.data))
 
         },
         handleFileUpload() {
@@ -154,19 +165,10 @@ export default {
 
             if (this.editedIndex > -1) {
                 Object.assign(this.tableData[this.editedIndex], this.editedItem);
-                let formdata = new FormData();
-                formdata.append("img_path", this.editedItem.img_path);
-                formdata.append("name", this.editedItem.name);
-                formdata.append("preview_text", this.editedItem.preview_text);
-                console.log(formdata.values());
-                axios.post('/api/projects/'+this.editedItem.id+"?_method=PUT",formdata).then(response=>console.log(response.data));
+                axios.post('/api/slider/'+this.editedItem.id+"?_method=PUT",this.editedItem).then(response=>console.log(response.data));
                 this.initialize();
             } else {
-                let formdata = new FormData();
-                formdata.append("img_path", this.editedItem.img_path);
-                formdata.append("name", this.editedItem.name);
-                formdata.append("preview_text", this.editedItem.preview_text);
-                axios.post('/api/projects', formdata)
+                axios.post('/api/slider', this.editedItem)
                     .then(response=>console.log(response.data))
                     .then(response=>this.tableData.push(response.data))
             }
