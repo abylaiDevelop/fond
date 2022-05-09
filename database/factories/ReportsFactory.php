@@ -20,7 +20,7 @@ class ReportsFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'file' => $this->faker->image
+            'file' => $this->faker->file
         ];
     }
 }

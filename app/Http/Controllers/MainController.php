@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Common;
 use App\Models\MainSlider;
 use App\Models\Reports;
@@ -54,6 +55,7 @@ class MainController extends Controller
         return view('about', [
             'common' => Common::find(1),
             'teams' => Team::latest()->simplePaginate(3)->withQueryString(),
+            'about' => About::find(1)
         ]);
     }
 }

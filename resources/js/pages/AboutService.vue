@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar dark flat color="grey-lighten">
-            <v-toolbar-title>About page</v-toolbar-title>
+            <v-toolbar-title>Services in about page</v-toolbar-title>
             <v-divider
                 class="mx-2"
                 inset
@@ -78,7 +78,7 @@ export default {
         headers: [
             {text: 'Name', value: 'title'},
             {text: 'Text', value: 'body'},
-            {text: 'Image', value: 'img_path'},
+            {text: 'Image', value: 'img_path', sortable: false},
         ],
         tableData: [],
         editedIndex: -1,
@@ -93,6 +93,7 @@ export default {
             body: '',
             img_path: '',
         },
+
     }),
 
     computed: {
@@ -114,11 +115,11 @@ export default {
     methods: {
         initialize() {
 
-            axios.get('/api/about').then(response => {
+            axios.get('/api/service').then(response => {
                 this.tableData = response.data.data;
             });
 
-            axios.get('/api/about').then(response=>this.allPermissions=response.data.data);
+            axios.get('/api/service').then(response=>this.allPermissions=response.data.data);
         },
 
         editItem(item) {
@@ -131,7 +132,7 @@ export default {
             const index = this.tableData.indexOf(item);
             confirm('Are you sure you want to delete this item?') && this.tableData.splice(index, 1);
 
-            axios.delete('/api/about/'+item.id).then(response=>console.log(response.data))
+            axios.delete('/api/service/'+item.id).then(response=>console.log(response.data))
 
         },
         handleFileUpload() {
@@ -154,14 +155,15 @@ export default {
                 formdata.append("img_path", this.editedItem.img_path);
                 formdata.append("title", this.editedItem.title);
                 formdata.append("body", this.editedItem.body);
-                axios.post('/api/about/'+this.editedItem.id+"?_method=PUT",formdata).then(response=>console.log(response.data));
+                console.log(formdata.values());
+                axios.post('/api/service/'+this.editedItem.id+"?_method=PUT",formdata).then(response=>console.log(response.data));
                 this.initialize();
             } else {
                 let formdata = new FormData();
                 formdata.append("img_path", this.editedItem.img_path);
                 formdata.append("title", this.editedItem.title);
                 formdata.append("body", this.editedItem.body);
-                axios.post('/api/about', formdata).then(response=>console.log(response.data))
+                axios.post('/api/service', formdata).then(response=>console.log(response.data))
                 this.tableData.push(this.editedItem);
             }
             this.close();

@@ -121,6 +121,14 @@
                   <v-list-tile-title>About fond</v-list-tile-title>
               </v-list-tile-content>
           </v-list-tile>
+        <v-list-tile to="/admin/about-service">
+            <v-list-tile-action>
+                <v-icon>settings</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+                <v-list-tile-title>About service</v-list-tile-title>
+            </v-list-tile-content>
+        </v-list-tile>
         <v-list-tile to="/admin/team">
             <v-list-tile-action>
                 <v-icon>settings</v-icon>

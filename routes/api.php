@@ -26,4 +26,6 @@ Route::apiResource("team",\App\Http\Controllers\Api\ApiTeamController::class);
 Route::apiResource("report",\App\Http\Controllers\Api\ReportsController::class);
 Route::apiResource("slider",\App\Http\Controllers\Api\MainSliderController::class);
 Route::apiResource("common",\App\Http\Controllers\Api\CommonController::class);
+Route::apiResource("about",\App\Http\Controllers\Api\AboutController::class);
+Route::apiResource("service",\App\Http\Controllers\Api\ServiceController::class);
 

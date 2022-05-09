@@ -3,50 +3,27 @@
     <section class="about page__about">
         <div class="container">
             <div class="about__inner" id="about">
-                <img class="about__img" src="images/img/about-page-img.png" alt="">
+                <img class="about__img" src="{{$about->img_path}}" alt="">
                 <div class="about__content">
                     <h3 class="about__title page__title">
-                        О нашем фонде
+                        {{$about->title}}
                     </h3>
                     <p class="about__text page__text">
-                        Группа работает в 10 странах мира: Канаде, Китае, Грузии, Израиле, Казахстане, России, Сингапуре, Турции, Вьетнаме, Украине в таких секторах как девелопмент, строительные материалы, нефтедобыча, развитие сети АЗС нового формата “Compass”, сельское хозяйство. Всего в группе более 30 компаний, где задействовано около 8000 сотрудников.
+                        {{$about->body}}
                     </p>
-                    <div class="about__item">
-                        <img class="about__item-img" src="images/icons/about-item-1.svg" alt="">
-                        <div class="about__item-content">
-                            <h5 class="about__item-title">
-                                Поддержка многодетных семей, малоимущих
-                            </h5>
-                            <p class="about__item-text page__text">
-                                Посредством поставки продуктовых наборов и адресной материальной помощи в сотрудничестве с волонтерскими организациями и региональными государственными
-                                органами Республики Казахстан
-                            </p>
+                    @foreach($about->service as $service)
+                        <div class="about__item">
+                            <img class="about__item-img" src="{{$service->img_path}}" alt="">
+                            <div class="about__item-content">
+                                <h5 class="about__item-title">
+                                    {{$service->title}}
+                                </h5>
+                                <p class="about__item-text page__text">
+                                    {{$service->body}}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="about__item">
-                        <img class="about__item-img" src="images/icons/about-item-2.svg" alt="">
-                        <div class="about__item-content">
-                            <h5 class="about__item-title">
-                                Предоставление помощи медикам
-                            </h5>
-                            <p class="about__item-text page__text">
-                                Необходимыми средствами для борьбы с инфекцией и обеспечения
-                                условий их работы
-                            </p>
-                        </div>
-                    </div>
-                    <div class="about__item">
-                        <img class="about__item-img" src="images/icons/about-item-3.svg" alt="">
-                        <div class="about__item-content">
-                            <h5 class="about__item-title">
-                                Сотрудничество с благотворительными фондами
-                            </h5>
-                            <p class="about__item-text page__text">
-                                Посредством поставки продуктовых наборов и адресной материальной помощи в сотрудничестве с волонтерскими организациями и региональными государственными
-                                органами Республики Казахстан
-                            </p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="about__sliders">
