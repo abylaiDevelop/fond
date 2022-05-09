@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\ApiProjectController;
+use App\Http\Controllers\api\ApiProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Api\ApiNewsController;
+use App\Http\Controllers\api\ApiNewsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes

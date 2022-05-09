@@ -24,7 +24,7 @@ class StoreReportsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'file' => 'pdf|doc|docx|'
         ];
     }
 }

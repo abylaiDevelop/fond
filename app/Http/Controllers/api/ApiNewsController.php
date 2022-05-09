@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreNewsRequest;
+use App\Http\Requests\UpdateNewsRequest;
 use App\Http\Resources\UserResource;
 use App\Models\News;
-use http\Env\Response;
-use Illuminate\Http\Request;
-use Nette\Utils\Image;
+use App\Repository\NewsRepository;
 
 class ApiNewsController extends Controller
 {
@@ -17,79 +17,23 @@ class ApiNewsController extends Controller
         return UserResource::collection($news);
     }
 
-
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNewsRequest $request, NewsRepository $repository)
     {
-        $imageName = "";
-        $news = new News();
-        if (!empty($request->img_path)) {
-            $request->validate([
-                'img_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $imageName = time().'.'.$request->file("img_path")->extension();
-            $request->file("img_path")->move(public_path('images'), $imageName);
-        }
-        $news::create([
-            "name" => $request->name,
-            "preview_text" => $request->preview_text,
-            "img_path" => '/images/'.$imageName
-        ]);
-        return response(["message" => "created success", "news" => $request->file("img_path")]);
-    }
-
-
-    public function show(News $news)
-    {
-        return view('news.news-detail',[
-            'news' => $news
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\News  $news
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(News $news)
-    {
-        //
+        $news = $repository->store($request);
+        return response(["message" => "created success", "news" => $news]);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param int $id
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateNewsRequest $request,NewsRepository $repository, News $news)
     {
-        $news = News::find($id);
-        $imageName = "";
-        if (!empty($request->img_path)) {
-            $request->validate([
-                'img_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $imageName = time().'.'.$request->file("img_path")->extension();
-            $request->file("img_path")->move(public_path('images'), $imageName);
-        }
-        $news->update([
-            "name" => $request->name,
-            "preview_text" => $request->preview_text,
-            "img_path" => $imageName != "" ? 'images/'.$imageName : ""
-        ]);
+        $news = $repository->update($request,$news);
         return response(['message'=>'updated successfully', "news" => $news]);
     }
 

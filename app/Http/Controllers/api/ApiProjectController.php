@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
+use App\Http\Resources\ProjectResource;
 use App\Http\Resources\UserResource;
 use App\Models\Project;
-use Illuminate\Http\Request;
+use App\Repository\ProjectRepository;
 
 class ApiProjectController extends Controller
 {
@@ -17,37 +19,12 @@ class ApiProjectController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request, ProjectRepository $repository)
     {
-        $project = new Project();
-        $imageName = "";
-        if (!empty($request->img_path)) {
-            $request->validate([
-                'img_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $imageName = time().'.'.$request->file("img_path")->extension();
-            $request->file("img_path")->move(public_path('images'), $imageName);
-        }
-        $project::create([
-            "name" => $request->name,
-            "preview_text" => $request->preview_text,
-            "img_path" => $imageName != "" ? '/images/'.$imageName : ""
-        ]);
+        $project = $repository->store($request);
         return response(["message" => "created success", "project" => $project]);
     }
 
@@ -55,48 +32,21 @@ class ApiProjectController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * @return ProjectResource
      */
     public function show(Project $project)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Project $project)
-    {
-        //
+        return new ProjectResource($project);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  int $id
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProjectRequest $request, ProjectRepository $repository, Project $project)
     {
-        $project = Project::find($id);
-        $imageName = "";
-        if (!empty($request->img_path)) {
-            $request->validate([
-                'img_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $imageName = time().'.'.$request->file("img_path")->extension();
-            $request->file("img_path")->move(public_path('images'), $imageName);
-        }
-        $project->update([
-            "name" => $request->name,
-            "preview_text" => $request->preview_text,
-            "img_path" => $imageName != "" ? 'images/'.$imageName : ""
-        ]);
-        return response(['message'=>'updated successfully', "news" => $project]);
+        $project = $repository->update($request, $project);
+        return response(['message'=>'updated successfully', "project" => $project]);
     }
 
     /**
@@ -107,9 +57,9 @@ class ApiProjectController extends Controller
      */
     public function destroy($id)
     {
-        $existinProject = Project::find($id);
-        if ($existinProject) {
-            $existinProject->delete();
+        $existingProject = Project::find($id);
+        if ($existingProject) {
+            $existingProject->delete();
             return response(['message' => 'Deleted']);
         }
         return response(['message'=> 'Project not found']);
