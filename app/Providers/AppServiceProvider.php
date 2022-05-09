@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Repository\ProjectRepository;
+use App\Repository\Repository;
+use App\Services\DocUploadService;
+use App\Services\ImageUploadService;
+use Dotenv\Repository\Adapter\ReplacingWriter;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +18,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(ImageUploadService::class, function ($app) {
+            return new ImageUploadService();
+        });
+
+        $this->app->singleton(DocUploadService::class, function ($app) {
+            return new DocUploadService();
+        });
     }
 
     /**
