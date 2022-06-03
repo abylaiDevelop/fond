@@ -22,7 +22,7 @@ class MainController extends Controller
             'projects' => Project::latest()->simplePaginate(6)->withQueryString(),
             'reports' => Reports::latest()->simplePaginate(3)->withQueryString(),
             'slider' => MainSlider::latest()->simplePaginate(3)->withQueryString(),
-            'common' => Common::find(1),
+            'common' => Common::find(1), //test
         ]);
     }
 
